@@ -1,0 +1,78 @@
+.data{
+    width: 80%;
+    height: 480px;
+    overflow: scroll;
+    position: fixed;
+    top: 35%;
+    left: 10%;
+    border-radius: 8px;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    z-index: -9999;
+}
+
+.datalist{
+    display: flex;
+    align-items: center;
+    height: 8vh;
+    width: 95%;
+    margin: auto;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 2%;
+    >div:nth-child(1){
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    >div:nth-child(2){
+        width: 70%;
+        padding-left: 5%;
+    }
+    >div:nth-child(3){
+        width: 10%;
+        >button{
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border: 1px solid green;
+            color: green;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 2s;
+        }
+        >button:hover{
+            background: green;
+            color: #fff;
+        }
+    }
+    
+    >div:nth-child(4){
+        width: 10%;
+        >button{
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border: 1px solid red;
+            color: red;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 2s;
+        }
+        >button:hover{
+            background: red;
+            color: #fff;
+        }
+    }
+}
+
+.datalist:hover{
+    background: #000;
+    color: #fff;
+}
