@@ -2,9 +2,10 @@ import * as actionTypes from "../../action/actionTypes";
 
 const todo = []
 
-export const AddTodoReducer=(state=todo, action)=>{
+export const TodoReducer=(state=todo, action)=>{
 
     switch(action.type){
+
         case actionTypes.ADD_TODO:
             const { id, todo } = action.payload;
             if (todo !== "") {
@@ -20,12 +21,11 @@ export const AddTodoReducer=(state=todo, action)=>{
             }
         
         case actionTypes.DELETE_TODO:
-
             const uID = action.payload
-
-            return state.filter((id)=> id !== uID)
+            return state.filter((ele)=> ele.id !== uID)
 
         default:
             return state
+
     }
 }

@@ -14,9 +14,12 @@
     >div{
         width: 50%;
     }
+    >div:nth-child(1){
+        cursor: pointer;
+    }
 }
 
-.signin{
+.signinn{
     width: 100px;
     height: 50px;
     background: #000;
