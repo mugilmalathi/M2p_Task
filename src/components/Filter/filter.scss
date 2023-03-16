@@ -35,3 +35,44 @@
         color: #fff;
     }
 }
+
+@media only screen and (max-width: 600px){
+    .filter{
+        width: 60px;
+        height: 30px;
+        box-shadow: rgba(62, 61, 61, 0.1) 0px 4px 12px;
+        background: #000;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        position: fixed;
+        left: 75%;
+        top: 25%;
+        font-weight: bold;
+        font-size: 10px !important;
+    }
+    
+    .filtershow{
+        width: 80px;
+        height: 80px;
+        border: 1px solid #000;
+        background: #fff;
+        border-radius: 8px;
+        position: fixed;
+        left: 77%;
+        top: 30%;
+        >div{
+            height: 33.5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        >div:hover{
+            background: #000;
+            color: #fff;
+        }
+    }
+}

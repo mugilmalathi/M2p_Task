@@ -7,6 +7,7 @@ import Data from "../Data/Data";
 const Filter = () => {
 
     const [filter, setFilter]=useState(false)
+    const [filtername, setFilterName]=useState('Filter')
 
   return (
     <>
@@ -15,20 +16,35 @@ const Filter = () => {
          onClick={()=>{
             setFilter(true)
          }}
-      > Filter {filter===false?<BsFillCaretDownFill style={{marginLeft:"20%", marginTop:"3%"}}/>:<BsFillCaretUpFill style={{marginLeft:"20%", marginTop:"3%"}}/>} </div>
+      > {filtername} {filter===false?<BsFillCaretDownFill style={{marginLeft:"20%", marginTop:"3%"}}/>:<BsFillCaretUpFill style={{marginLeft:"20%", marginTop:"3%"}}/>} </div>
 
       {
         filter === true
         ? 
           <div className="filtershow">
-            <div onClick={()=>setFilter(false)}>All</div>
-            <div onClick={()=>setFilter(false)}>Pending</div>
-            <div onClick={()=>setFilter(false)}>Done</div>
+            <div 
+              onClick={()=>{
+                setFilter(false)
+                setFilterName("All")
+              }}>All</div>
+            <div 
+              onClick={()=>{
+                setFilter(false)
+                setFilterName("Pending")
+              }}>Pending</div>
+            <div 
+              onClick={()=>{
+                setFilter(false)
+                setFilterName("Done")
+              }}>Done</div>
           </div>
         : null
       }
 
-      <Data />
+      <Data 
+        filtername={filtername}
+        setFilterName={setFilterName}
+      />
     </>
   );
 };

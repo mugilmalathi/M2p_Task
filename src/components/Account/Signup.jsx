@@ -18,6 +18,8 @@ const Signup = () => {
       <div className='signup'>
          <h2>REGISTER NOW</h2>
          <form>
+           <input type='text' placeholder='enter name'/>
+           <br />
            <input type='text' placeholder='enter username'/>
            <br />
            <input type='text' placeholder='enter email ID'/>

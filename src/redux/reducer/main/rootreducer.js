@@ -1,6 +1,8 @@
-// import { combineReducers } from "redux";
-// import { TodoReducer } from "../reducers/todoreducer";
+import { TodoReducer } from "../reducers/todoreducer"
+import { doneTodoreducer } from "../reducers/doneTodoreducer"
+import { combineReducers } from "redux"
 
-// export const rootReducer = combineReducers({
-//     TodoReducer
-// })
+export const rootReducer = combineReducers({
+    TodoReducer,
+    doneTodoreducer
+})
