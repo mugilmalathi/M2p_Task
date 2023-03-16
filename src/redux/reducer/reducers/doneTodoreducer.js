@@ -5,7 +5,12 @@ const pending = []
 export const doneTodoreducer=(state=pending, action)=>{
     switch (action.type) {
         case actionTypes.DONE_TODO:
-            return [...state, action.payload]
+            const { id, todo, pending } = action.payload
+            return [...state, {
+                id: id,
+                todo: todo,
+                pending: pending
+            }]
 
         case actionTypes.DELETE_DONE_TODO:
             const uID = action.payload;

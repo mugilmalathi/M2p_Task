@@ -3,18 +3,14 @@ import "./data.scss";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePendingTodo, deleteTodo, pendingTodo } from "../../redux/action/actions";
+import { deleteDoneTodo, deleteTodo, doneTodo, updateTodo } from "../../redux/action/actions";
 import nodata from "../../assets/Images/nodata.png"
 
 const Data = ({ filtername }) => {
 
   const todo = useSelector((store) => store.TodoReducer);
-  const done = useSelector((store)=>store.doneTodoreducer)
+  const done = useSelector((store)=>store.doneTodoreducer);
   const dispatch = useDispatch();
-
-  useEffect(()=>{
-
-  }, [])
 
   return (
     <>
@@ -23,13 +19,13 @@ const Data = ({ filtername }) => {
           {todo.map((el, i) => {
             return (
               <div className="datalist">
-                <div>{i + 1}</div>
+                <div>{i+1}</div>
                 <div>{el.todo}</div>
                 <div>
                   <button 
                     className="datadone"
                     onClick={() => {
-                      dispatch(pendingTodo(el))
+                      dispatch(doneTodo(el))
                     }}>
                     <BsCheckSquareFill />
                   </button>
@@ -52,7 +48,7 @@ const Data = ({ filtername }) => {
                 <div>{i + 1}</div>
                 <div>{el.todo}</div>
                 <div>
-                  <button className="datadelete" onClick={() => dispatch(deletePendingTodo(el.id))}>
+                  <button className="datadelete" onClick={() => dispatch(deleteDoneTodo(el.id))}>
                     <BsFillTrashFill />
                   </button>
                 </div>
@@ -63,34 +59,31 @@ const Data = ({ filtername }) => {
         : filtername === 'Pending'
         ? 
         <div className="data">
-          {todo.map((el, i) => {
-            return(
-              done.map((ele, index)=>{
-                if(el.id !== ele.id){
-                  return (
-                    <div className="datalist">
-                      <div>{i + 1}</div>
-                      <div>{el.todo}</div>
-                      <div>
-                        <button 
-                          className="datadone"
-                          onClick={() => {
-                            dispatch(pendingTodo(el))
-                          }}>
-                          <BsCheckSquareFill />
-                        </button>
-                      </div>
-                      <div>
-                        <button className="datadelete" onClick={() => dispatch(deleteTodo(el.id))}>
-                          <BsFillTrashFill />
-                        </button>
-                      </div>
-                    </div>
-                  );
-                }
-              })
-            )
-          })}
+        {todo.map((el, i) => {
+          console.log(el, "hello check check check...");
+          if(el.pending === false){
+            return (
+              <div className="datalist">
+                <div>{i+1}</div>
+                <div>{el.todo}</div>
+                <div>
+                  <button 
+                    className="datadone"
+                    onClick={() => {
+                      dispatch(doneTodo(el))
+                    }}>
+                    <BsCheckSquareFill />
+                  </button>
+                </div>
+                <div>
+                  <button className="datadelete" onClick={() => dispatch(deleteTodo(el.id))}>
+                    <BsFillTrashFill />
+                  </button>
+                </div>
+              </div>
+            );
+          }
+        })}
         </div>
         : <div className="nodata"><img src={nodata} /></div>
     }
