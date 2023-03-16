@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_DONE_TODO, DELETE_TODO, DONE_TODO, UPDATE_TODO } from "./actionTypes"
+import { ADD_TODO, DELETE_DONE_TODO, DELETE_TODO, DONE_TODO, SIGNUP, UPDATE_TODO } from "./actionTypes"
 
 export const addTodo = (data)=>{
     return {
@@ -44,5 +44,12 @@ export const deleteDoneTodo = (id)=>{
     return{
         type: DELETE_DONE_TODO,
         payload: id
+    }
+}
+
+export const signup =(data)=>{
+    return{
+        type: SIGNUP,
+        payload: data
     }
 }
