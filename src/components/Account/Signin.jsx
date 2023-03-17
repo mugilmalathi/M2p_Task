@@ -16,7 +16,6 @@ const Signin = () => {
     e.preventDefault()
     const hashedPwd = bcrypt.hashSync(password, 10)
     const equalhashing = signupdata.find(((ele)=>ele.password===password))
-    console.log(equalhashing, "equal hashing...");
 
     if(equalhashing){
       bcrypt.compare(password, hashedPwd, function(err, isMatch){
