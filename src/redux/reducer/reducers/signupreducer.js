@@ -3,11 +3,18 @@ import * as actionTypes from "../../action/actionTypes"
 const signup = []
 
 export const signupReducer =(state=signup, action)=>{
-    switch(action.types){
+    switch(action.type){
         case actionTypes.SIGNUP:
-            return[
-                ...state, action.payload
-            ]
+            const { name, email, username, password } = action.payload
+            return [
+                ...state, 
+                {
+                name: name,
+                email: email,
+                username: username,
+                password: password
+            }
+        ]
         default:
             return state
     }

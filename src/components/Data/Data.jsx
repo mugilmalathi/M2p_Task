@@ -16,7 +16,7 @@ const Data = ({ filtername }) => {
   const done = useSelector((store) => store.doneTodoreducer);
   const dispatch = useDispatch();
 
-  const toast = useToast()
+  const toast = useToast();
 
   return (
     <>
@@ -35,10 +35,10 @@ const Data = ({ filtername }) => {
                       dispatch(doneTodo(el));
                       toast({
                         title: `${el.todo} marked as done.!`,
-                        status: 'success',
+                        status: "success",
                         duration: 5000,
                         isClosable: true,
-                      })
+                      });
                     }}
                   >
                     <BsCheckSquareFill />
@@ -48,13 +48,13 @@ const Data = ({ filtername }) => {
                   <button
                     className="datadelete"
                     onClick={() => {
-                      dispatch(deleteTodo(el.id))
+                      dispatch(deleteTodo(el.id));
                       toast({
                         title: `${el.todo} task deleted.!`,
-                        status: 'error',
+                        status: "error",
                         duration: 5000,
                         isClosable: true,
-                      })
+                      });
                     }}
                   >
                     <BsFillTrashFill />

@@ -1,4 +1,5 @@
-import { ADD_TODO, DELETE_DONE_TODO, DELETE_TODO, DONE_TODO, SIGNUP, UPDATE_TODO } from "./actionTypes"
+import { ADD_TODO, DELETE_DONE_TODO, DELETE_TODO, DONE_TODO, SIGNIN, SIGNUP, UPDATE_TODO } from "./actionTypes"
+import bcrypt from 'bcryptjs'
 
 export const addTodo = (data)=>{
     return {
@@ -48,8 +49,24 @@ export const deleteDoneTodo = (id)=>{
 }
 
 export const signup =(data)=>{
+    const hashedPassword = bcrypt.hashSync(data.password, 10)
     return{
         type: SIGNUP,
-        payload: data
+        payload: {
+            name: data.name,
+            username: data.username,
+            email: data.email,
+            password: hashedPassword
+        }
+    }
+}
+
+export const signin =(data)=>{
+    return{
+        type: SIGNIN,
+        payload:{
+            email: data.email,
+            password: data.password
+        }
     }
 }
