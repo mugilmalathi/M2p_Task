@@ -9,14 +9,11 @@ export const TodoReducer=(state=todo, action)=>{
         case actionTypes.ADD_TODO:
             const { id, todo, pending } = action.payload;
             if (todo !== "") {
-                return [
-                    ...state,
-                    {
+                return [...state, {
                         id: id,
                         todo: todo,
                         pending: pending
-                    }
-                ];
+                    }];
             } else {
                 return state;
             }
@@ -25,11 +22,7 @@ export const TodoReducer=(state=todo, action)=>{
             return action.payload
 
         case actionTypes.UPDATE_TODO:
-            return[...state, {
-                id: action.payload.id,
-                todo: action.payload.todo,
-                pending: action.payload.pending
-            }]
+            return action.payload
         
         case actionTypes.DELETE_TODO:
             return [...state]

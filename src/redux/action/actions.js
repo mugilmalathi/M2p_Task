@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_DONE_TODO, DELETE_TODO, DONE_TODO, GET_TODO, SIGNIN, SIGNUP, UPDATE_TODO } from "./actionTypes"
+import { ADD_TODO, DELETE_DONE_TODO, DELETE_TODO, DONE_TODO, GET_DONE_TODO, GET_TODO, SIGNIN, SIGNUP, UPDATE_TODO } from "./actionTypes"
 import bcrypt from 'bcryptjs'
 import api from '../../Apis/api'
 
@@ -22,40 +22,49 @@ export const getTodo = ()=> async(dispatch)=>{
     })
 }
 
-export const updateTodo =(data)=>{
-    return {
+export const updateTodo =(data)=>async(dispatch)=>{
+    const response = await api.patch(`/todo/update/${data._id}`,{
+        id:data._id,
+        todo:data.todo,
+        pending:true
+    })
+    dispatch({
         type: UPDATE_TODO,
-        payload:{
-            id: data.id,
-            todo: data.todo,
-            pending: true
-        }
-    }
+        payload: response.data
+    })
 }
 
 export const deleteTodo = (id)=>async(dispatch)=>{
     const response = await api.delete(`/todo/delete/${id}`)
     return{
-        type: DELETE_TODO,
-        payload: response.data
+        type: DELETE_TODO
     }
 }
 
-export const doneTodo = (data)=>{
-    return{
+export const doneTodo = (data) => async (dispatch) => {
+    const response = await api.post(`/done-todo/create`,{
+        id: data.id,
+        todo: data.todo,
+        pending: true
+    })
+    dispatch({
         type: DONE_TODO,
-        payload: {
-            id: data.id,
-            todo: data.todo,
-            pending: true
-        }
-    }
+        payload: response.data
+    })
 }
 
-export const deleteDoneTodo = (id)=>{
+export const getDoneTodo = ()=> async(dispatch)=>{
+    const response = await api.get("/done-todo/list")
+    dispatch({
+        type: GET_DONE_TODO,
+        payload: response.data
+    })
+}
+
+export const deleteDoneTodo = (id)=>async(dispatch)=>{
+    const response = await api.delete(`/done-todo/delete/${id}`)
     return{
         type: DELETE_DONE_TODO,
-        payload: id
     }
 }
 

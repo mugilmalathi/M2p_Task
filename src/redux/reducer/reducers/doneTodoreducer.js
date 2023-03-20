@@ -11,10 +11,12 @@ export const doneTodoreducer=(state=pending, action)=>{
                 todo: todo,
                 pending: pending
             }]
+        
+        case actionTypes.GET_DONE_TODO:
+            return action.payload
 
         case actionTypes.DELETE_DONE_TODO:
-            const uID = action.payload;
-            return state.filter((ele)=> ele.id !== uID)
+            return [...state]
     
         default:
             return state

@@ -7,7 +7,9 @@ import {
   deleteDoneTodo,
   deleteTodo,
   doneTodo,
+  getDoneTodo,
   getTodo,
+  updateTodo,
 } from "../../redux/action/actions";
 import nodata from "../../assets/Images/nodata.png";
 import { useToast } from "@chakra-ui/react";
@@ -22,6 +24,7 @@ const Data = ({ filtername }) => {
 
   useEffect(()=>{
     dispatch(getTodo())
+    dispatch(getDoneTodo())
   },[state])
 
   return (
@@ -39,6 +42,7 @@ const Data = ({ filtername }) => {
                   className="datadone"
                   onClick={() => {
                     dispatch(doneTodo(el));
+                    dispatch(updateTodo(el))
                     toast({
                       title: `${el.todo} marked as done.!`,
                       status: "success",
@@ -83,9 +87,9 @@ const Data = ({ filtername }) => {
                 <button
                   className="datadelete"
                   onClick={() => {
-                    dispatch(deleteDoneTodo(el.id))
-                    // setState((prev)=>!prev)
-                    //   dispatch(getTodo())
+                    dispatch(deleteDoneTodo(el._id))
+                    setState((prev)=>!prev)
+                      dispatch(getDoneTodo())
                   }}
                 >
                   <BsFillTrashFill />
@@ -98,11 +102,10 @@ const Data = ({ filtername }) => {
     ) : filtername === "Pending" ? (
       <div className="data">
         {todo.map((el, i) => {
-          console.log(el, "hello check check check...");
           if (el.pending === false) {
             return (
               <div className="datalist">
-                <div>{i + 1}</div>
+                <div>{i+1}</div>
                 <div>{el.todo}</div>
                 <div>
                   <button

@@ -15,7 +15,6 @@ import { useToast } from "@chakra-ui/react";
 const Data = ({ filtername }) => {
   const todo = useSelector((store) => store.TodoReducer);
   const todoData = useSelector((store) => store.getTodoReducer)
-  console.log(todoData, "tododata...");
   const done = useSelector((store) => store.doneTodoreducer);
   const dispatch = useDispatch();
 
@@ -31,7 +30,6 @@ const Data = ({ filtername }) => {
       filtername === "All" ? (
         <div className="data">
           {todoData.map((el, i) => {
-            console.log(el, "hello hello hello data..");
             return (
               <div className="datalist">
                 <div>{i+1}</div>
@@ -94,7 +92,6 @@ const Data = ({ filtername }) => {
       ) : filtername === "Pending" ? (
         <div className="data">
           {todo.map((el, i) => {
-            console.log(el, "hello check check check...");
             if (el.pending === false) {
               return (
                 <div className="datalist">
