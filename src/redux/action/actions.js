@@ -1,15 +1,25 @@
-import { ADD_TODO, DELETE_DONE_TODO, DELETE_TODO, DONE_TODO, SIGNIN, SIGNUP, UPDATE_TODO } from "./actionTypes"
+import { ADD_TODO, DELETE_DONE_TODO, DELETE_TODO, DONE_TODO, GET_TODO, SIGNIN, SIGNUP, UPDATE_TODO } from "./actionTypes"
 import bcrypt from 'bcryptjs'
+import api from '../../Apis/api'
 
-export const addTodo = (data)=>{
-    return {
+export const addTodo = (data)=> async(dispatch)=>{
+    const response = await api.post('/todo/create', {
+        id: new Date().getTime().toString(),
+        todo: data,
+        pending: false
+    })
+    dispatch({
         type: ADD_TODO,
-        payload:{
-            id: new Date().getTime().toString(),
-            todo: data,
-            pending: false
-        }
-    }
+        payload: response.data
+    })
+}
+
+export const getTodo = ()=> async(dispatch)=>{
+    const response = await api.get("/todo/list")
+    dispatch({
+        type: GET_TODO,
+        payload: response.data
+    })
 }
 
 export const updateTodo =(data)=>{
@@ -23,10 +33,11 @@ export const updateTodo =(data)=>{
     }
 }
 
-export const deleteTodo = (id)=>{
+export const deleteTodo = (id)=>async(dispatch)=>{
+    const response = await api.delete(`/todo/delete/${id}`)
     return{
         type: DELETE_TODO,
-        payload: id
+        payload: response.data
     }
 }
 

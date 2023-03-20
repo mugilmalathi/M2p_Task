@@ -21,6 +21,9 @@ export const TodoReducer=(state=todo, action)=>{
                 return state;
             }
 
+        case actionTypes.GET_TODO:
+            return action.payload
+
         case actionTypes.UPDATE_TODO:
             return[...state, {
                 id: action.payload.id,
@@ -29,8 +32,7 @@ export const TodoReducer=(state=todo, action)=>{
             }]
         
         case actionTypes.DELETE_TODO:
-            const uID = action.payload
-            return state.filter((ele)=> ele.id !== uID)
+            return [...state]
 
         default:
             return state
