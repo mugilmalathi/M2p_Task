@@ -19,3 +19,7 @@ const AllRoutes = () => {
 }
 
 export default AllRoutes
+
+
+// <Route path='/login' element={<Signin />} />
+// <Route path='/signup' element={<Signup />} />

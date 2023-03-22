@@ -119,7 +119,9 @@ const Data = ({ filtername }) => {
             todo.map((el, i) => {
               if (el.status === "done") {
                 return (
-                  <div className="datalist">
+                  <div className={`datalist ${
+                    el.status === "done" ? "datalist-done" : ""
+                  }`}>
                     <div></div>
                     <div>{el.todo}</div>
                   </div>

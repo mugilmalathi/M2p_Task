@@ -19,6 +19,10 @@ const Signin = () => {
   const signupdata = useSelector((store) => store.signupReducer);
   const signindata = useSelector((store) => store.signinReducer);
 
+  signindata.map((el)=>{
+    localStorage.setItem("token", JSON.stringify(el.token))
+  })
+  
   const dispatch = useDispatch()
   const toast = useToast()
 
@@ -28,12 +32,10 @@ const Signin = () => {
   }, [])
 
   const onSubmit=async(fields)=>{
-
-    
-
-    const user = await signupdata.find((ele)=>ele.email)
-    console.log(user, "registered user..");
-    if(!user || user.email !== fields.email) {
+    const user = await signupdata.find((ele)=>ele.email===fields.email)
+    const pwd = bcrypt.compareSync("B4c0/\/", fields.password); 
+    console.log(pwd, "pwd");
+    if(!user) {
       toast({
         title: `User not found`,
         status: "error",
@@ -52,7 +54,7 @@ const Signin = () => {
         navigate('/')
       }, 2000)
     }
-    localStorage.setItem("token", JSON.stringify(signindata.token))
+    localStorage.setItem("name", fields.email)
     // const match = user.checkPassword(fields.password)
     // if(!match) console.log("User not found")
   }
