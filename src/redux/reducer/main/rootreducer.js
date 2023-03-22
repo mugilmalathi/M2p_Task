@@ -1,10 +1,10 @@
 import { TodoReducer } from "../reducers/todoreducer"
-import { doneTodoreducer } from "../reducers/doneTodoreducer"
 import { combineReducers } from "redux"
 import { signupReducer } from "../reducers/signupreducer"
+import { signinReducer  } from "../reducers/signinreducer"
 
 export const rootReducer = combineReducers({
     TodoReducer,
-    doneTodoreducer,
-    signupReducer
+    signupReducer,
+    signinReducer
 })

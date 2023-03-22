@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addTodo } from '../../redux/action/actions'
-import "./search.scss"
+import "./addtodo.scss"
 
-const Search = ({searchshow, setSearchShow}) => {
+const Search = () => {
 
   const[searchVal, setSearchVal]=useState('')
   const dispatch = useDispatch()
-  const todo = useSelector((store)=>store)
 
   return (
     <div className='search'>
@@ -15,7 +14,6 @@ const Search = ({searchshow, setSearchShow}) => {
         type='text'
         placeholder='add todo..!'
         onChange={(e)=>{
-            setSearchShow(true)
             setSearchVal(e.target.value)
         }}
       />

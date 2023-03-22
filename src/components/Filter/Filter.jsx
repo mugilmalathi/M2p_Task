@@ -7,7 +7,7 @@ import Data from "../Data/Data";
 const Filter = () => {
 
     const [filter, setFilter]=useState(false)
-    const [filtername, setFilterName]=useState('Filter')
+    const [filtername, setFilterName]=useState('All')
 
   return (
     <>
@@ -45,6 +45,7 @@ const Filter = () => {
         filtername={filtername}
         setFilterName={setFilterName}
       />
+      
     </>
   );
 };

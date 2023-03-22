@@ -7,12 +7,12 @@ export const TodoReducer=(state=todo, action)=>{
     switch(action.type){
 
         case actionTypes.ADD_TODO:
-            const { id, todo, pending } = action.payload;
+            const { id, todo, status } = action.payload;
             if (todo !== "") {
                 return [...state, {
                         id: id,
                         todo: todo,
-                        pending: pending
+                        status: status
                     }];
             } else {
                 return state;
@@ -25,7 +25,7 @@ export const TodoReducer=(state=todo, action)=>{
             return action.payload
         
         case actionTypes.DELETE_TODO:
-            return [...state]
+            return state
 
         default:
             return state

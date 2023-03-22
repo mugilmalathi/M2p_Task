@@ -38,6 +38,12 @@
     } 
 }
 
+.datalist-done{
+    background: green !important;
+    text-decoration: line-through;
+    color: white !important;
+}
+
 .datadone{
     padding: 10px;
     display: flex;
