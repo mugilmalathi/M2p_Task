@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import React from 'react'
 import { useNavigate } from 'react-router'
 import "./nav.scss"
@@ -7,8 +8,8 @@ const Navbar = () => {
     const navigate=useNavigate()
 
     const handleLogout=()=>{
-      localStorage.setItem('token', JSON.stringify(''))
       localStorage.setItem('name', '')
+      Cookies.remove("JWT_Token")
       navigate("/login")
     }
 

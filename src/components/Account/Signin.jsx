@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import "./account.scss";
-import bcrypt from "bcryptjs";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { getSignin, getSignup, signin } from "../../redux/action/actions";
+import { getUser, signin } from "../../redux/action/actions";
 import { useToast } from "@chakra-ui/react";
+import Cookies from "js-cookie";
+import bcrypt from 'bcryptjs'
 
 const Signin = () => {
 
@@ -16,25 +17,26 @@ const Signin = () => {
     handleSubmit
   } = useForm()
 
-  const signupdata = useSelector((store) => store.signupReducer);
-  const signindata = useSelector((store) => store.signinReducer);
-
-  signindata.map((el)=>{
-    localStorage.setItem("token", JSON.stringify(el.token))
-  })
+  const userData = useSelector((store) => store.signupReducer);
   
   const dispatch = useDispatch()
   const toast = useToast()
 
   useEffect(()=>{
-    dispatch(getSignup())
-    dispatch(getSignin())
+    dispatch(getUser())
   }, [])
 
   const onSubmit=async(fields)=>{
-    const user = await signupdata.find((ele)=>ele.email===fields.email)
-    const pwd = bcrypt.compareSync("B4c0/\/", fields.password); 
-    console.log(pwd, "pwd");
+
+    const user = await userData.find((ele)=>ele.email===fields.email)
+    userData.map((ele)=>{
+      if(fields.email===ele.email){
+        Cookies.set("UserID", ele._id)
+      }
+    })   
+
+    // const exipass = userData.find((ele)=>ele.password)
+    // const pwd = bcrypt.compareSync(exipass.password, fields.password);
     if(!user) {
       toast({
         title: `User not found`,
@@ -52,11 +54,10 @@ const Signin = () => {
       });
       setTimeout(()=>{
         navigate('/')
+        window.location.reload()
       }, 2000)
     }
     localStorage.setItem("name", fields.email)
-    // const match = user.checkPassword(fields.password)
-    // if(!match) console.log("User not found")
   }
 
   return (
@@ -69,6 +70,7 @@ const Signin = () => {
 
       <div className="signin">
         <h2>SIGNIN</h2>
+        {errors.email || errors.password && (<div className="text-danger">Please check your credentials</div>)}
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"

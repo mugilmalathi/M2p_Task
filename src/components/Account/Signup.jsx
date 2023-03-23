@@ -1,7 +1,7 @@
 import { useToast } from '@chakra-ui/react'
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { signup } from '../../redux/action/actions'
 import "./account.scss"

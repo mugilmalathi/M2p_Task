@@ -11,12 +11,10 @@ export const signinReducer =(state=signin, action)=>{
                 {
                     email: email,
                     password: password,
-                    token: action.payload.token
+                    token: action.payload.token,
+                    id: action.payload.user._id
                 }
         ]
-
-        // case actionTypes.GET_SIGNIN:
-        //     return action.payload
 
         default:
             return state

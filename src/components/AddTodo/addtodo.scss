@@ -8,34 +8,39 @@ $common-clr:#000;
     display: flex;
     justify-content: center;
     align-items: center;
-    >input{
-        width: 350px;
-        height: 50px;
-        border-radius: 8px;
-        padding-left: 2%;
-        border: 1px solid transparent;
-        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-    }
-    >input:focus{
-        outline: none;
-    }
-    >button{
-        width: 80px;
-        height: 50px;
-        border: 1px solid transparent;
-        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-        color: #fff;
-        background: $common-clr;
-        transition: 2s;
-        margin-left: 2%;
-        border-radius: 8px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    >button:hover{
-        background: #fff;
-        color: $common-clr;
-        border: 1px solid transparent;
+    >form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        >input{
+            width: 350px;
+            height: 50px;
+            border-radius: 8px;
+            padding-left: 2%;
+            border: 1px solid transparent;
+            box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+        }
+        >input:focus{
+            outline: none;
+        }
+        >button{
+            width: 80px;
+            height: 50px;
+            border: 1px solid transparent;
+            box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+            color: #fff;
+            background: $common-clr;
+            transition: 2s;
+            margin-left: 2%;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        >button:hover{
+            background: #fff;
+            color: $common-clr;
+            border: 1px solid transparent;
+        }
     }
 }
 

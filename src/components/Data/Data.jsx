@@ -3,9 +3,10 @@ import "./data.scss";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTodo, getTodo, updateTodo } from "../../redux/action/actions";
+import { deleteTodo, getTodo, signin, updateTodo } from "../../redux/action/actions";
 import nodata from "../../assets/Images/nodata.png";
 import { useToast } from "@chakra-ui/react";
+import Cookies from "js-cookie";
 
 const Data = ({ filtername }) => {
 
@@ -13,10 +14,13 @@ const Data = ({ filtername }) => {
   const dispatch = useDispatch();
   const toast = useToast();
   const [deleteCheck, setDeleteCheck] = useState(false);
-  const [updateCheck, setUpdateCheck] = useState(false)
+  const [updateCheck, setUpdateCheck] = useState(false);
+  
+  const UserID = Cookies.get('UserID')
 
   useEffect(() => {
-    dispatch(getTodo())
+    dispatch(getTodo());
+    dispatch(signin())
   }, [deleteCheck, updateCheck]);
 
   const updateTodoData=(e)=>{
@@ -45,25 +49,61 @@ const Data = ({ filtername }) => {
 
   return (
     <div>
-      {filtername === "All" ? (
+      {filtername === "All" && Cookies.get('JWT_Token')? (
         <div className="data">
           {todo && todo?.length > 0
             ? todo?.map((el, i) => {
-                if (el?.status === "All" || el?.status === "done") {
+                if(UserID===el.user_id){
+                  if (el.status === "All" || el.status === "done") {
+                    return (
+                      <div
+                        className={`datalist ${
+                          el.status === "done" ? "datalist-done" : ""
+                        }`}
+                      >
+                        <div></div>
+                        <div>{el.todo}</div>
+                        <div>
+                          <button
+                            className="datadone"
+                            style={{
+                              display: el.status === "done" ? "none" : "block",
+                            }}
+                            onClick={(e)=>{
+                              updateTodoData(el)
+                            }}
+                          >
+                            <BsCheckSquareFill />
+                          </button>
+                        </div>
+                        <div>
+                          <button
+                            className="datadelete"
+                            onClick={() => {deleteTodoData(el)}}
+                          >
+                            <BsFillTrashFill />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  }
+                }
+              })
+            : null}
+        </div>
+      ) : filtername === "Pending" ? (
+        <div className="data">
+          {todo.length > 0 &&
+            todo.map((el, i) => {
+              if(UserID===el.user_id){
+                if (el.status === "All") {
                   return (
-                    <div
-                      className={`datalist ${
-                        el.status === "done" ? "datalist-done" : ""
-                      }`}
-                    >
-                      <div>{i + 1}</div>
+                    <div className="datalist">
+                      <div></div>
                       <div>{el.todo}</div>
                       <div>
                         <button
                           className="datadone"
-                          style={{
-                            display: el.status === "done" ? "none" : "block",
-                          }}
                           onClick={(e)=>{updateTodoData(el)}}
                         >
                           <BsCheckSquareFill />
@@ -80,36 +120,6 @@ const Data = ({ filtername }) => {
                     </div>
                   );
                 }
-              })
-            : null}
-        </div>
-      ) : filtername === "Pending" ? (
-        <div className="data">
-          {todo.length > 0 &&
-            todo.map((el, i) => {
-              if (el.status === "All") {
-                return (
-                  <div className="datalist">
-                    <div></div>
-                    <div>{el.todo}</div>
-                    <div>
-                      <button
-                        className="datadone"
-                        onClick={(e)=>{updateTodoData(el)}}
-                      >
-                        <BsCheckSquareFill />
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        className="datadelete"
-                        onClick={() => {deleteTodoData(el)}}
-                      >
-                        <BsFillTrashFill />
-                      </button>
-                    </div>
-                  </div>
-                );
               }
             })}
         </div>
@@ -117,20 +127,22 @@ const Data = ({ filtername }) => {
         <div className="data">
           {todo.length > 0 &&
             todo.map((el, i) => {
-              if (el.status === "done") {
-                return (
-                  <div className={`datalist ${
-                    el.status === "done" ? "datalist-done" : ""
-                  }`}>
-                    <div></div>
-                    <div>{el.todo}</div>
-                  </div>
-                );
+              if(UserID===el.user_id){
+                if (el.status === "done") {
+                  return (
+                    <div className={`datalist ${
+                      el.status === "done" ? "datalist-done" : ""
+                    }`}>
+                      <div></div>
+                      <div>{el.todo}</div>
+                    </div>
+                  );
+                }
               }
             })}
         </div>
       ) : (
-        <div className="nodata" style={{ border: "1px solid red" }}>
+        <div className="nodata">
           <img src={nodata} />
         </div>
       )}

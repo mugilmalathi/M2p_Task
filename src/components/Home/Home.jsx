@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Filter from '../Filter/Filter'
 import Search from '../AddTodo/AddTodo'
 
