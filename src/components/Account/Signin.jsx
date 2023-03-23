@@ -29,17 +29,25 @@ const Signin = () => {
   const onSubmit=async(fields)=>{
 
     const user = await userData.find((ele)=>ele.email===fields.email)
+    var pwd;
     userData.map((ele)=>{
       if(fields.email===ele.email){
         Cookies.set("UserID", ele._id)
+        pwd = ele.password;
       }
     })   
+    const loginPwd = bcrypt.compareSync(fields.password, pwd)
 
-    // const exipass = userData.find((ele)=>ele.password)
-    // const pwd = bcrypt.compareSync(exipass.password, fields.password);
     if(!user) {
       toast({
         title: `User not found`,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }else if(!loginPwd){
+      toast({
+        title: `Please check your credentials`,
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -57,7 +65,9 @@ const Signin = () => {
         window.location.reload()
       }, 2000)
     }
+
     localStorage.setItem("name", fields.email)
+    
   }
 
   return (
