@@ -70,7 +70,7 @@ const Signin = () => {
 
       <div className="signin">
         <h2>SIGNIN</h2>
-        {errors.email || errors.password && (<div className="text-danger">Please check your credentials</div>)}
+        {errors.email || errors.password ? (<div className="text-danger text-center mt-5">Do not empty.! Please enter your credentials.</div>) : null}
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"

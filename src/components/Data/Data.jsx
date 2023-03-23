@@ -91,7 +91,7 @@ const Data = ({ filtername }) => {
               })
             : null}
         </div>
-      ) : filtername === "Pending" ? (
+      ) : filtername === "Pending" && Cookies.get('JWT_Token')? (
         <div className="data">
           {todo.length > 0 &&
             todo.map((el, i) => {
@@ -123,7 +123,7 @@ const Data = ({ filtername }) => {
               }
             })}
         </div>
-      ) : filtername === "Done" ? (
+      ) : filtername === "Done" && Cookies.get('JWT_Token')? (
         <div className="data">
           {todo.length > 0 &&
             todo.map((el, i) => {

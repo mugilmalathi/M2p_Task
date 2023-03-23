@@ -13,6 +13,8 @@ const Navbar = () => {
       navigate("/login")
     }
 
+    const jwt = Cookies.get("JWT_Token")
+
     //Navbar name
     var str = localStorage.getItem('name');
     var res = ''
@@ -25,17 +27,24 @@ const Navbar = () => {
     }
     
   return (
-    <div className='navbar'>
-      <div onClick={()=>navigate('/')}>Welcome to the Todo world..!</div>
-      <div>{localStorage.getItem('name')!==''?'Welcome,':null} <span>{res}</span></div>
-      <div>
-        <button 
-          className='signinn' 
-          onClick={()=>{
-            handleLogout()
-        }}>Logout</button>
+    <>
+      <div className='navbar'>
+        <div onClick={()=>navigate('/')}>Welcome to the Todo world..!</div>
+        <div>{localStorage.getItem('name')!==''?'Welcome,':null} <span>{res}</span></div>
+        <div>
+          <button 
+            className='signinn' 
+            onClick={()=>{
+              handleLogout()
+          }}>{!jwt?"Account":"Logout"}</button>
+        </div>
       </div>
-    </div>
+      {
+        !jwt
+        ? <div className='alertmsg'>Please login and add your daily tasks..!</div>
+        : null
+      }
+    </>
   )
 }
 

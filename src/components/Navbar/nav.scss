@@ -41,6 +41,51 @@
     font-weight: bold;
 }
 
+.alertmsg{
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: small;
+    font-weight: bold;
+    color: red;
+    animation: alertmsg 20s linear infinite;
+}
+
+@keyframes alertmsg{
+    0%, 100%{
+        margin-left: 0;
+    }
+    10%{
+        margin-left: 10%;
+    }
+    20%{
+        margin-left: 20%;
+    }
+    30%{
+        margin-left: 30%;
+    }
+    40%{
+        margin-left: 40%;
+    }
+    50%{
+        margin-left: 50%;
+    }
+    60%{
+        margin-left: 60%;
+    }
+    70%{
+        margin-left: 70%;
+    }
+    80%{
+        margin-left: 80%;
+    }
+    90%{
+        margin-left: 90%;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     .navbar{
         width: 90%;

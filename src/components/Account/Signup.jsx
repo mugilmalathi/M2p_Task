@@ -15,7 +15,7 @@ const Signup = () => {
   const {
     register,
     formState:{errors},
-    handleSubmit
+    handleSubmit,
   } = useForm()
 
   const onSubmit=(fields)=>{
