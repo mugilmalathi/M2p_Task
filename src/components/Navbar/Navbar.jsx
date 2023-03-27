@@ -1,11 +1,16 @@
+import { useColorMode } from '@chakra-ui/react'
 import Cookies from 'js-cookie'
 import React from 'react'
 import { useNavigate } from 'react-router'
 import "./nav.scss"
+import { BsFillSunFill } from "react-icons/bs";
+import { BsFillMoonFill } from "react-icons/bs";
 
 const Navbar = () => {
 
     const navigate=useNavigate()
+
+    const {colorMode, toggleColorMode} = useColorMode()
 
     const handleLogout=()=>{
       localStorage.setItem('name', '')
@@ -28,10 +33,11 @@ const Navbar = () => {
     
   return (
     <>
-      <div className='navbar'>
+      <div className={colorMode==='light'?'navbar':"navbar-dark"}>
         <div onClick={()=>navigate('/')}>Welcome to the Todo world..!</div>
         <div>{localStorage.getItem('name')!==''?'Welcome,':null} <span>{res}</span></div>
         <div>
+        <button className='darkmode' onClick={toggleColorMode}>{colorMode==="light"?<BsFillMoonFill />:<BsFillSunFill />}</button>
           <button 
             className='signinn' 
             onClick={()=>{

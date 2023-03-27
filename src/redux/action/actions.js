@@ -24,7 +24,6 @@ export const getTodo = ()=> async(dispatch)=>{
             Authorization: `Bearer ${token}`
         }
     })
-
     dispatch({
         type: GET_TODO,
         payload: response.data

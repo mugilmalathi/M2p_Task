@@ -6,7 +6,6 @@ import "./addtodo.scss"
 
 const Search = () => {
 
-  const[searchVal, setSearchVal]=useState('')
   const dispatch = useDispatch()
 
   const {
@@ -23,13 +22,12 @@ const onSubmit=(fields)=>{
       <form onSubmit={handleSubmit(onSubmit)}>
         <input 
           type='text'
+          data-testid="todo-input"
+          id='todo-input'
           placeholder='add todo..!'
           {...register('todo', {required:true})}
-          onChange={(e)=>{
-              setSearchVal(e.target.value)
-          }}
         />
-     <button>Add Todo</button>
+     <button id='todo_button' data-testid="todo_button">Add Todo</button>
       </form>
     </div>
   )

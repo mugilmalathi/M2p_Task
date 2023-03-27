@@ -7,6 +7,7 @@ import { deleteTodo, getTodo, signin, updateTodo } from "../../redux/action/acti
 import nodata from "../../assets/Images/nodata.png";
 import { useToast } from "@chakra-ui/react";
 import Cookies from "js-cookie";
+// import CryptoJS, { MD5 } from "crypto-js";
 
 const Data = ({ filtername }) => {
 
@@ -21,7 +22,7 @@ const Data = ({ filtername }) => {
   useEffect(() => {
     dispatch(getTodo());
     dispatch(signin())
-  }, [deleteCheck, updateCheck]);
+  }, [deleteCheck, updateCheck, todo]);
 
   const updateTodoData=(e)=>{
     dispatch(updateTodo(e));
@@ -46,6 +47,22 @@ const Data = ({ filtername }) => {
       isClosable: true,
     });
   }
+
+// const data = '1234567890123456';
+// const iv = 'yourivare1234567';
+// const key = '356d9abc7532ceb0945b615a622c3370';
+
+// const fkey = CryptoJS.enc.Hex.parse(key);
+// const fiv = CryptoJS.enc.Hex.parse(iv);
+
+// const enc = CryptoJS.AES.encrypt(data, MD5, {
+//         iv: fiv,
+//         mode: CryptoJS.mode.CBC,
+//         padding: CryptoJS.pad.Pkcs7,
+// });
+
+// const final = enc.ciphertext.toString(CryptoJS.enc.Base64);
+// console.log('encrypted password: ' , final)
 
   return (
     <div>
@@ -98,7 +115,9 @@ const Data = ({ filtername }) => {
               if(UserID===el.user_id){
                 if (el.status === "All") {
                   return (
-                    <div className="datalist">
+                    <div className={`datalist ${
+                      el.status === "All" ? "datalist-pending" : ""
+                    }`}>
                       <div></div>
                       <div>{el.todo}</div>
                       <div>
@@ -131,7 +150,7 @@ const Data = ({ filtername }) => {
                 if (el.status === "done") {
                   return (
                     <div className={`datalist ${
-                      el.status === "done" ? "datalist-done" : ""
+                      el.status === "done" ? "datalist-donee" : ""
                     }`}>
                       <div></div>
                       <div>{el.todo}</div>

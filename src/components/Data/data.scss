@@ -5,7 +5,7 @@
     position: fixed;
     top: 35%;
     left: 10%;
-    border-radius: 8px;
+    border-radius: 20px;
     box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
     z-index: -9999;
 }
@@ -39,10 +39,22 @@
 }
 
 .datalist-done{
-    background: green !important;
+    background: #037301 !important;
     text-decoration: line-through;
     color: white !important;
 }
+
+.datalist-pending{
+    background: #083D7A !important;
+    color: white !important;
+}
+
+.datalist-donee{
+    background: #AA2002 !important;
+    text-decoration: line-through;
+    color: white !important;
+}
+
 
 .datadone{
     padding: 10px;
