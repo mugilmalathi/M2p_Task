@@ -19,15 +19,20 @@ const onSubmit=(fields)=>{
 
   return (
     <div className='search'>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form 
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <input 
           type='text'
-          data-testid="todo-input"
+          data-testid="todo_input"
           id='todo-input'
           placeholder='add todo..!'
           {...register('todo', {required:true})}
         />
-     <button id='todo_button' data-testid="todo_button">Add Todo</button>
+        <button 
+          id='todo_button' 
+          data-testid="todo_button"
+        >Add Todo</button>
       </form>
     </div>
   )

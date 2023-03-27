@@ -38,6 +38,10 @@
     } 
 }
 
+.datalist:nth-last-child(1){
+    margin-bottom: 2%;
+}
+
 .datalist-done{
     background: #037301 !important;
     text-decoration: line-through;
